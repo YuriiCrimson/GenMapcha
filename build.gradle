@@ -1,0 +1,34 @@
+group 'org.imp.core'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'application'
+
+mainClassName = 'org.imp.core.CaptchaGeneration'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    jcenter()
+}
+configurations {
+    addjar
+}
+dependencies {
+}
+
+compileJava { 
+    options.encoding = "UTF-8" 
+}
+
+task fatJar(type: Jar) {
+    manifest {
+        attributes 'Main-Class': 'org.imp.core.CaptchaGeneration'
+    }
+    with jar
+}
+
+tasks.build.dependsOn('fatJar')
